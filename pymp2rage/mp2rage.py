@@ -394,7 +394,7 @@ class MP2RAGE(object):
         B0 = df.loc[('MP2RAGE', 1, 'mag'), 'FieldStrength']
         flipangleABdegree = df.loc[('MP2RAGE', 1, 'mag'), 'FlipAngle'], df.loc[('MP2RAGE', 2, 'mag'), 'FlipAngle']
 
-        mp2rage = cls(MPRAGE_tr=MPRAGE_tr,
+        return cls(MPRAGE_tr=MPRAGE_tr,
                                 invtimesAB=invtimesAB,
                                 flipangleABdegree=flipangleABdegree,
                                 nZslices=nZslices,
@@ -405,9 +405,6 @@ class MP2RAGE(object):
                                inv1ph=inv1ph,
                                inv2=inv2,
                                inv2ph=inv2ph)
-
-
-        return mp2rage
 
 
     def write_files(self, path=None, prefix=None, compress=True, masked=False):
@@ -1018,7 +1015,7 @@ class MEMP2RAGE(MP2RAGE):
         B0 = df.loc[('MP2RAGE', 1, slice(None), 'mag'), 'FieldStrength'].values[0]
         flipangleABdegree = df.loc[('MP2RAGE', 1, slice(None), 'mag'), 'FlipAngle'].values[0], df.loc[('MP2RAGE', 2, slice(None), 'mag'), 'FlipAngle'].values[0]
 
-        mp2rageme = cls(echo_times=echo_times,
+        return cls(echo_times=echo_times,
                                         MPRAGE_tr=MPRAGE_tr,
                                         invtimesAB=invtimesAB,
                                         flipangleABdegree=flipangleABdegree,
@@ -1030,9 +1027,6 @@ class MEMP2RAGE(MP2RAGE):
                                        inv1ph=inv1ph,
                                        inv2=inv2,
                                        inv2ph=inv2ph)
-
-
-        return mp2rageme
 
 
 

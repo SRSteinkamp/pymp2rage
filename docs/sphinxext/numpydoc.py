@@ -54,10 +54,7 @@ def mangle_docstrings(app, what, name, obj, options, lines,
         lines[:] = title_re.sub(sixu(''), u_NL.join(lines)).split(u_NL)
     else:
         doc = get_doc_object(obj, what, u_NL.join(lines), config=cfg)
-        if sys.version_info[0] >= 3:
-            doc = str(doc)
-        else:
-            doc = unicode(doc)
+        doc = str(doc) if sys.version_info[0] >= 3 else unicode(doc)
         lines[:] = doc.split(u_NL)
 
     if (app.config.numpydoc_edit_link and hasattr(obj, '__name__') and

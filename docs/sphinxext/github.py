@@ -44,9 +44,8 @@ def make_link_node(rawtext, app, type, slug, options):
     prefix = "#"
     if type == 'pull':
         prefix = "PR " + prefix
-    node = nodes.reference(rawtext, prefix + utils.unescape(slug), refuri=ref,
+    return nodes.reference(rawtext, prefix + utils.unescape(slug), refuri=ref,
                            **options)
-    return node
 
 def ghissue_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     """Link to a GitHub issue.

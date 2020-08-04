@@ -301,7 +301,7 @@ class NumpyDocString(collections.Mapping):
         self._parse_summary()
 
         sections = list(self._read_sections())
-        section_names = set([section for section, content in sections])
+        section_names = {section for section, content in sections}
 
         has_returns = 'Returns' in section_names
         has_yields = 'Yields' in section_names
@@ -359,10 +359,7 @@ class NumpyDocString(collections.Mapping):
         if self[name]:
             out += self._str_header(name)
             for param, param_type, desc in self[name]:
-                if param_type:
-                    out += ['%s : %s' % (param, param_type)]
-                else:
-                    out += [param]
+                out += ['%s : %s' % (param, param_type)] if param_type else [param]
                 out += self._str_indent(desc)
             out += ['']
         return out

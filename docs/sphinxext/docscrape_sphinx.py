@@ -22,10 +22,6 @@ class SphinxDocString(NumpyDocString):
 
     def _str_signature(self):
         return ['']
-        if self['Signature']:
-            return ['``%s``' % self['Signature']] + ['']
-        else:
-            return ['']
 
     def _str_summary(self):
         return self['Summary'] + ['']
@@ -82,8 +78,8 @@ class SphinxDocString(NumpyDocString):
                 out += autosum
 
             if others:
-                maxlen_0 = max([len(x[0]) for x in others])
-                maxlen_1 = max([len(x[1]) for x in others])
+                maxlen_0 = max(len(x[0]) for x in others)
+                maxlen_1 = max(len(x[1]) for x in others)
                 hdr = "="*maxlen_0 + "  " + "="*maxlen_1 + "  " + "="*10
                 fmt = '%%%ds  %%%ds  ' % (maxlen_0, maxlen_1)
                 n_indent = maxlen_0 + maxlen_1 + 4
